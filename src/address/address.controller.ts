@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   UsePipes,
   ValidationPipe
@@ -11,8 +12,9 @@ import { AddressEntity } from './entities';
 import { Roles } from '../decorators/roles.decorator';
 import { UserType } from '../user/enum';
 import { UserId } from '../decorators';
+import { ReturnAddressDto } from './dtos/returnAddress.dto';
 
-@Roles(UserType.User)
+@Roles(UserType.User, UserType.Admin)
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
@@ -26,5 +28,16 @@ export class AddressController {
     userId: string
   ): Promise<AddressEntity> {
     return this.addressService.createAddress(createAddressDto, userId);
+  }
+
+  @Get()
+  @UsePipes(ValidationPipe)
+  async findAddressByUserId(
+    @UserId()
+    userId: string
+  ): Promise<ReturnAddressDto[]> {
+    return (await this.addressService.findAddressByUserId(userId)).map(
+      (address) => new ReturnAddressDto(address)
+    );
   }
 }
