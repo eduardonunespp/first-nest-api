@@ -6,7 +6,7 @@ import {
   PrimaryColumn,
   UpdateDateColumn
 } from 'typeorm';
-import { ProductEntity } from 'src/product/entities/product.entitie';
+import { ProductEntity } from '../../product/entities/product.entitie';
 
 @Entity({ name: 'category' })
 export class CategoryEntity {
@@ -17,10 +17,10 @@ export class CategoryEntity {
   name: string;
 
   @CreateDateColumn({ name: 'created_at', nullable: false })
-  createdAt: string;
+  createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', nullable: false })
-  updatedAt: string;
+  updatedAt: Date;
 
   @OneToMany(
     () => ProductEntity,
