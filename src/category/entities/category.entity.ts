@@ -3,14 +3,14 @@ import {
   CreateDateColumn,
   Entity,
   OneToMany,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
-import { ProductEntity } from '../../product/entities/product.entitie';
+import { ProductEntity } from '../../product/entities/product.entity';
 
 @Entity({ name: 'category' })
 export class CategoryEntity {
-  @PrimaryColumn('rowid')
+  @PrimaryGeneratedColumn('rowid')
   id: number;
 
   @Column({ name: 'name', nullable: false })

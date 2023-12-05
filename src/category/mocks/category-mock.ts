@@ -1,8 +1,5 @@
-import { CategoryEntity } from '../entities/category.entitie';
+import { createCategoryDto } from '../dtos/create-category.dto';
 
-export const categoryMock: CategoryEntity = {
-  name: 'categoryMock',
-  id: 1,
-  createdAt: new Date(),
-  updatedAt: new Date()
+export const categoryMock: createCategoryDto = {
+  name: 'categoryMock'
 };

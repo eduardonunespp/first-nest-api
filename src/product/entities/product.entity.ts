@@ -1,17 +1,17 @@
-import { CategoryEntity } from '../../category/entities/category.entitie';
+import { CategoryEntity } from '../../category/entities/category.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn
 } from 'typeorm';
 
 @Entity({ name: 'product' })
 export class ProductEntity {
-  @PrimaryColumn('rowid')
+  @PrimaryGeneratedColumn('rowid')
   id: number;
 
   @Column({ name: 'name', nullable: false })
