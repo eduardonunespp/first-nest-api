@@ -27,10 +27,10 @@ export class ProductEntity {
   image: string;
 
   @CreateDateColumn({ name: 'created_at', nullable: false })
-  createdAt: string;
+  createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', nullable: false })
-  updatedAt: string;
+  updatedAt: Date;
 
   @ManyToOne(
     () => CategoryEntity,
