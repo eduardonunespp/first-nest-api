@@ -1,7 +1,9 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
   Post,
   UsePipes,
   ValidationPipe
@@ -12,6 +14,7 @@ import { ProductService } from './product.service';
 import { ReturnProductDto } from './dtos';
 import { CreateProductDto } from './dtos/create-product.dto';
 import { ProductEntity } from './entities/product.entity';
+import { DeleteResult } from 'typeorm';
 
 @Controller('product')
 export class ProductController {
@@ -32,5 +35,14 @@ export class ProductController {
     @Body() createProduct: CreateProductDto
   ): Promise<ProductEntity> {
     return this.productService.createProduct(createProduct);
+  }
+
+  @Roles(UserType.Admin, UserType.User)
+  @UsePipes(ValidationPipe)
+  @Delete('/:productId')
+  async deleteProduct(
+    @Param('productId') productId: number
+  ): Promise<DeleteResult> {
+    return this.productService.deleteProduct(productId);
   }
 }
