@@ -2,7 +2,7 @@ import { createCategoryMock } from '../../category/mocks';
 import { ProductEntity } from '../entities/product.entity';
 
 export const productMock: ProductEntity = {
-  category_id: createCategoryMock.id,
+  categoryId: createCategoryMock.id,
   createdAt: new Date(),
   updatedAt: new Date(),
   id: 7368,
